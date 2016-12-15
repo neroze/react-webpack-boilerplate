@@ -4,6 +4,8 @@ var webpack = require("webpack");
 var webpack = require('webpack-stream');
 var webpackConfig = require("./webpack.config.js");
 var uglify = require('gulp-uglify');
+var watch = require('gulp-watch');
+var connect = require('gulp-connect'); 
 
 // The development server (the recommended option for development)
 gulp.task("default", ["webpack:build-dev"]);
@@ -15,8 +17,17 @@ gulp.task("build-dev", ["webpack:build-dev"], function() {
 var webpackBuilt = (_config) => {
 	return gulp.src('src/client/index.js')
 					  .pipe(webpack( _config ))
-					  .pipe(gulp.dest('src/client/public/'));
+					  .pipe(gulp.dest('src/client/public/'))
+					  .pipe(connect.reload());
 }
+
+gulp.task('connect', function() {
+  connect.server({
+    root: ['./'],
+    livereload: true,
+    port:8083
+  });
+});
 
 // for dev Env
 gulp.task("webpack:build-dev", (webpack) => {
@@ -26,6 +37,11 @@ gulp.task("webpack:build-dev", (webpack) => {
 	
  	return webpackBuilt(myDevConfig);
 
+});
+
+gulp.task('watch', function() {
+  gulp.run('connect');
+  gulp.watch('src/client/app/*.js', ['webpack:build-dev']);
 });
 
 // for production

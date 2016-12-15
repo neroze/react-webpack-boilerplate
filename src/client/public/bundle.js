@@ -52,13 +52,12 @@
 	
 	var _reactDom = __webpack_require__(32);
 	
-	var _GistBox = __webpack_require__(178);
-	
-	var _GistBox2 = _interopRequireDefault(_GistBox);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	(0, _reactDom.render)(_react2.default.createElement(_GistBox2.default, null), document.querySelector("#app"));
+	//import GistBox from './GistBox';
+	var GistBox = __webpack_require__(178);
+	
+	(0, _reactDom.render)(_react2.default.createElement(GistBox, null), document.querySelector("#app"));
 
 /***/ },
 /* 1 */
@@ -21473,10 +21472,6 @@
 
 	"use strict";
 	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
 	var _GistAddForm = __webpack_require__(179);
 	
 	var _GistAddForm2 = _interopRequireDefault(_GistAddForm);
@@ -21518,15 +21513,15 @@
 				React.createElement(
 					"h1",
 					null,
-					"GistBox"
+					"GistBox -- Jumper with live reload"
 				),
 				React.createElement(_GistAddForm2.default, { onAdd: this.addGist }),
 				this.state.gists.map(newGist)
 			);
 		}
 	});
-	
-	exports.default = GistBox;
+	module.exports = GistBox;
+	//export default GistBox;
 
 /***/ },
 /* 179 */

@@ -24,12 +24,12 @@ var GistBox = React.createClass({
 		};
 
 		return <div>
-						<h1>GistBox</h1>
+						<h1>GistBox -- Jumper with live reload</h1>
 						<GistAddForm onAdd={this.addGist} />
 						{this.state.gists.map(newGist)}
 					</div>
 		
 	}
 });
-
-export default GistBox;
+module.exports = GistBox;
+//export default GistBox;
